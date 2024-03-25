@@ -27,7 +27,7 @@ class DepenseController extends Controller
             'image' => $request->image,
             'user_id' => $userId,
         ]);
-        return response()->json(array('depense' => $depense));
+        return response()->json(['depense' => $depense], 201);
     }
 
     public function update(Request $request , Depense $depense)
