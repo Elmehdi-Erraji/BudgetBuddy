@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Depense;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Gate;
 class DepenseController extends Controller
 {
     public function index()
@@ -32,9 +32,10 @@ class DepenseController extends Controller
 
     public function update(Request $request , Depense $depense)
     {
-        if ($request->user()->id !== $depense->user_id) {
+        if (Gate::denies('update', $depense)) {
             return response()->json(['error' => 'You are not authorized to update this Depense'], 403);
         }
+
         $depense = Depense::findOrFail($depense->id);
         $depense->update($request->all());
         return response()->json(['message' => 'Depense updated successfully', 'depense' => $depense]);
@@ -42,7 +43,7 @@ class DepenseController extends Controller
 
     public function destroy(Request $request,Depense $depense)
     {
-        if ($request->user()->id !== $depense->user_id) {
+        if (Gate::denies('delete', $depense)) {
             return response()->json(['error' => 'You are not authorized to delete this Depense'], 403);
         }
         $depense = Depense::findOrFail($depense->id);
