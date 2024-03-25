@@ -4,24 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Depense;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepenseController extends Controller
 {
     public function index()
     {
-       
-        $depenses = Depense::all();
+        $userId = Auth::id();
+
+        $depenses = Depense::where('user_id', $userId)->get();
         return response()->json(array('depenses' => $depenses));
     }
 
     public function store(Request $request)
     {
-        $depense = Depense::create($request->all());
+        $userId = $request->user()->id;
+
+        $depense = Depense::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'expense' => $request->expense,
+            'image' => $request->image,
+            'user_id' => $userId,
+        ]);
         return response()->json(array('depense' => $depense));
     }
 
     public function update(Request $request , Depense $depense)
     {
+        if ($request->user()->id !== $depense->user_id) {
+            return response()->json(['error' => 'You are not authorized to update this Depense'], 403);
+        }
         $depense = Depense::findOrFail($depense->id);
         $depense->update($request->all());
         return response()->json(['message' => 'Depense updated successfully', 'depense' => $depense]);
@@ -29,6 +42,9 @@ class DepenseController extends Controller
 
     public function destroy(Request $request,Depense $depense)
     {
+        if ($request->user()->id !== $depense->user_id) {
+            return response()->json(['error' => 'You are not authorized to delete this Depense'], 403);
+        }
         $depense = Depense::findOrFail($depense->id);
         $depense->delete();
         return response()->json(['message' => 'Depense updated successfully', 'depense' => $depense]);

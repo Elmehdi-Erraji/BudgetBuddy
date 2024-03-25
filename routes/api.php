@@ -19,4 +19,4 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 
 
 
-Route::apiResource('depenses', DepenseController::class);
+Route::apiResource('depenses', DepenseController::class)->middleware('auth:sanctum');;

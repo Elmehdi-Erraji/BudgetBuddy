@@ -9,5 +9,10 @@ class Depense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'expense', 'image'];
+    protected $fillable = ['title', 'description', 'expense', 'image','user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

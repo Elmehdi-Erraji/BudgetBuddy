@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('expense', 10, 2);
             $table->string('image')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
