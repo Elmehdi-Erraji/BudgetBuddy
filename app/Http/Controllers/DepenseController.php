@@ -111,7 +111,7 @@ class DepenseController extends Controller
  */
     public function update(Request $request , Depense $depense)
     {
-        if (Gate::denies('update', $depense)) {
+        if (Gate::authorize('update', $depense)) {
             return response()->json(['error' => 'You are not authorized to update this Depense'], 403);
         }
 
@@ -153,7 +153,7 @@ class DepenseController extends Controller
 
     public function destroy(Request $request,Depense $depense)
     {
-        if (Gate::denies('delete', $depense)) {
+        if (Gate::authorize('delete', $depense)) {
             return response()->json(['error' => 'You are not authorized to delete this Depense'], 403);
         }
         $depense = Depense::findOrFail($depense->id);
