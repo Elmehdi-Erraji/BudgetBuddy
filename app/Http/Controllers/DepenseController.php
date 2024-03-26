@@ -20,9 +20,9 @@ class DepenseController extends Controller
 
 /**
  * @OA\Info(
- *     title="Your API Title",
+ *     title="depense",
  *     version="1.0",
- *     description="Description of your API",
+ *     description="store depense",
  *     @OA\Contact(
  *         email="contact@example.com"
  *     ),
@@ -30,19 +30,6 @@ class DepenseController extends Controller
  *         name="MIT",
  *         url="https://opensource.org/licenses/MIT"
  *     )
- * )
- * @OA\Schema(
- *     schema="Depense",
- *     title="Depense",
- *     description="Depense object",
- *     @OA\Property(property="id", type="integer"),
- *     @OA\Property(property="title", type="string"),
- *     @OA\Property(property="description", type="string"),
- *     @OA\Property(property="expense", type="number", format="float"),
- *     @OA\Property(property="image", type="string", nullable=true),
- *     @OA\Property(property="user_id", type="integer"),
- *     @OA\Property(property="created_at", type="string", format="date-time"),
- *     @OA\Property(property="updated_at", type="string", format="date-time"),
  * )
  * @OA\Post(
  *     path="/api/depenses",
@@ -63,9 +50,7 @@ class DepenseController extends Controller
  *     @OA\Response(
  *         response=201,
  *         description="Depense created successfully",
- *         @OA\JsonContent(
- *             @OA\Property(property="depense", ref="#/components/schemas/Depense"),
- *         ),
+ *        
  *     ),
  * )
  */
@@ -115,15 +100,12 @@ class DepenseController extends Controller
  *         description="Depense updated successfully",
  *         @OA\JsonContent(
  *             @OA\Property(property="message", type="string", example="Depense updated successfully"),
- *             @OA\Property(property="depense", ref="#/components/schemas/Depense"),
+ *            
  *         ),
  *     ),
  *     @OA\Response(
  *         response=403,
  *         description="You are not authorized to update this Depense",
- *         @OA\JsonContent(
- *             @OA\Property(property="error", type="string", example="You are not authorized to update this Depense"),
- *         ),
  *     ),
  * )
  */
@@ -159,15 +141,12 @@ class DepenseController extends Controller
  *         description="Depense deleted successfully",
  *         @OA\JsonContent(
  *             @OA\Property(property="message", type="string", example="Depense deleted successfully"),
- *             @OA\Property(property="depense", ref="#/components/schemas/Depense"),
+ *             
  *         ),
  *     ),
  *     @OA\Response(
  *         response=403,
  *         description="You are not authorized to delete this Depense",
- *         @OA\JsonContent(
- *             @OA\Property(property="error", type="string", example="You are not authorized to delete this Depense"),
- *         ),
  *     ),
  * )
  */

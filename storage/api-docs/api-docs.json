@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Your API Title",
-        "description": "Description of your API",
+        "title": "depense",
+        "description": "store depense",
         "contact": {
             "email": "contact@example.com"
         },
@@ -228,19 +228,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Depense created successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "depense": {
-                                            "$ref": "#/components/schemas/Depense"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Depense created successfully"
                     }
                 }
             }
@@ -310,9 +298,6 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Depense updated successfully"
-                                        },
-                                        "depense": {
-                                            "$ref": "#/components/schemas/Depense"
                                         }
                                     },
                                     "type": "object"
@@ -321,20 +306,7 @@
                         }
                     },
                     "403": {
-                        "description": "You are not authorized to update this Depense",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "You are not authorized to update this Depense"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "You are not authorized to update this Depense"
                     }
                 }
             },
@@ -367,9 +339,6 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Depense deleted successfully"
-                                        },
-                                        "depense": {
-                                            "$ref": "#/components/schemas/Depense"
                                         }
                                     },
                                     "type": "object"
@@ -378,20 +347,7 @@
                         }
                     },
                     "403": {
-                        "description": "You are not authorized to delete this Depense",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "You are not authorized to delete this Depense"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "You are not authorized to delete this Depense"
                     }
                 }
             }
@@ -422,41 +378,6 @@
                         "type": "string",
                         "format": "date-time",
                         "nullable": true
-                    },
-                    "created_at": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updated_at": {
-                        "type": "string",
-                        "format": "date-time"
-                    }
-                },
-                "type": "object"
-            },
-            "Depense": {
-                "title": "Depense",
-                "description": "Depense object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "title": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "expense": {
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "image": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "user_id": {
-                        "type": "integer"
                     },
                     "created_at": {
                         "type": "string",
