@@ -68,6 +68,12 @@ class DepenseController extends Controller
         return response()->json(['depense' => $depense], 201);
     }
 
+    public function edit($id)
+    {
+        $depense = Depense::find($id);
+        return response()->json($depense);
+    }
+
     /**
  * @OA\Put(
  *     path="/api/depenses/{depense}",
