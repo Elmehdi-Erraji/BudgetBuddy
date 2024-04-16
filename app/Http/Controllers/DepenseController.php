@@ -68,9 +68,9 @@ class DepenseController extends Controller
         return response()->json(['depense' => $depense], 201);
     }
 
-    public function edit($id)
+    public function show($id)
     {
-        $depense = Depense::find($id);
+        $depense = Depense::findOrFail($id);
         return response()->json($depense);
     }
 
@@ -117,9 +117,9 @@ class DepenseController extends Controller
  */
     public function update(Request $request , Depense $depense)
     {
-        if (Gate::authorize('update', $depense)) {
-            return response()->json(['error' => 'You are not authorized to update this Depense'], 403);
-        }
+    //     if (Gate::authorize('update', $depense)) {
+    //         return response()->json(['error' => 'You are not authorized to update this Depense'], 403);
+    //     }
 
         $depense = Depense::findOrFail($depense->id);
         $depense->update($request->all());
@@ -159,12 +159,12 @@ class DepenseController extends Controller
 
     public function destroy(Request $request,Depense $depense)
     {
-        if (Gate::authorize('delete', $depense)) {
-            return response()->json(['error' => 'You are not authorized to delete this Depense'], 403);
-        }
+        // if (Gate::authorize('delete', $depense)) {
+        //     return response()->json(['error' => 'You are not authorized to delete this Depense'], 403);
+        // }
         $depense = Depense::findOrFail($depense->id);
         $depense->delete();
-        return response()->json(['message' => 'Depense updated successfully', 'depense' => $depense]);
+        return response()->json(['message' => 'Depense deleted successfully']);
     }
 
 }
